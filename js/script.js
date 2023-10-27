@@ -114,3 +114,26 @@ editForm.addEventListener("submit", (e) => {
     }
     toggleForms();
 });
+
+// filtrar informação
+
+const filterTodos = () => {
+    const filterValue = document.querySelector("#filter-select").value;
+
+    const todos = document.querySelectorAll(".todo");
+    todos.forEach((todo) => {
+        if (filterValue === "all") {
+            todo.style.display = "flex";
+        } else if (filterValue === "done" && !todo.classList.contains("done")) {
+            todo.style.display = "none";
+        } else if (filterValue === "undone" && todo.classList.contains("done")) {
+            todo.style.display = "none";
+        } else {
+            todo.style.display = "flex";
+        }
+    });
+};
+
+const filterSelect = document.querySelector("#filter-select");
+filterSelect.addEventListener("change", filterTodos);
+
